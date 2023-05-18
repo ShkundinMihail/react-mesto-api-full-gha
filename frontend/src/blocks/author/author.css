@@ -1,0 +1,14 @@
+.author {
+    display: flex;
+    flex-direction: row;
+    max-width: 486px;
+    width: 100%;
+}
+
+@media screen and (max-width:620px) {
+    .author {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+}

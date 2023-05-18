@@ -1,0 +1,8 @@
+.popup__form-error_position{
+    top:140px;
+}
+@media screen and (max-width: 620px) {
+    .popup__form-error_position {
+        top:147px;
+ }
+}

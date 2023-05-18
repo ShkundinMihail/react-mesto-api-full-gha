@@ -1,0 +1,13 @@
+.author__title-zone {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+
+}
+
+@media screen and (max-width:620px) {
+    .author__title-zone {
+        padding-left: 30px;
+    }
+}

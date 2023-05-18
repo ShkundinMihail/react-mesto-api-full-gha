@@ -1,0 +1,26 @@
+.form-authorizations__input {
+    font-family: Inter;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 17px;
+    letter-spacing: 0em;
+    text-align: left;
+    background-color: transparent;
+    background-image: none;
+    border: none;
+    outline:none;
+    border-bottom: 2px solid #CCCCCC;
+    width: 358px;
+    padding-bottom: 8px;
+    color: white;
+
+}
+.form-authorizations__input:focus{
+    border: none;
+}
+@media screen and (max-width:620px) {
+    .form-authorizations__input {
+        width: 260px;
+        padding-bottom: 8px;
+    }
+}

@@ -1,0 +1,19 @@
+.author__avatar-button {
+    width: 120px;
+    height: 120px;
+    border-radius: 100%;
+    z-index: 3;
+    background-image: none;
+    background-repeat: no-repeat;
+    background-position: center;
+    position: absolute;
+    opacity: 0;
+    border: 0;
+}
+
+.author__avatar-button:hover {
+    opacity: 0.8;
+    background-color: black;
+    background-image: url('../../../images/карандаш.svg');
+
+}

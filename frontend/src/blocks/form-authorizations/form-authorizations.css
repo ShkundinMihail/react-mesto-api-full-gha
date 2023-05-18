@@ -1,0 +1,21 @@
+.form-authorizations {
+    display: flex;
+    flex-direction: column;
+    max-width: 358px;
+    padding-left: 258px;
+    padding-right: 264px;
+}
+@media screen and (max-width:930px) {
+    .form-authorizations {
+        padding-left: 111px;
+        padding-right: 111px;
+    }
+}
+
+@media screen and (max-width:620px) {
+    .form-authorizations {
+        padding-left: 0px;
+        padding-right: 0px;
+        max-width: 260px;
+    }
+}

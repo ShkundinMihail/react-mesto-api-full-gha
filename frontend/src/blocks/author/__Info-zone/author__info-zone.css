@@ -1,0 +1,16 @@
+.author__info-zone {
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    padding: 22px 20px 25px 30px;
+    gap: 8px;
+}
+
+@media screen and (max-width:620px) {
+    .author__info-zone {
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        padding: 25px 0 0 0;
+    }
+}

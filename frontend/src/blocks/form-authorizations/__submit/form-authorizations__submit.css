@@ -1,0 +1,30 @@
+.form-authorizations__submit {
+    width: 358px;
+    padding: 14px 0;
+    border: none;
+    margin-top: 216px;
+    margin-left: 2px;
+    margin-bottom: 120px;
+    font-family: Inter;
+    font-size: 18px;
+    font-weight: 400;
+    line-height: 22px;
+    letter-spacing: 0em;
+    text-align: center;
+}
+
+@media screen and (max-width:620px) {
+    .form-authorizations__submit {
+        height: 46px;
+        width: 260px;
+        margin-bottom: 60px;
+        margin-top: 173px;
+        font-family: Inter;
+        font-size: 16px;
+        font-weight: 400;
+        line-height: 19px;
+        letter-spacing: 0em;
+        text-align: center;
+        
+    }
+}

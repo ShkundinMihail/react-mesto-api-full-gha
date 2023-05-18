@@ -1,0 +1,15 @@
+.popup__author-edit {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 358px;
+    width: 100%;
+}
+
+@media screen and (max-width:620px) {
+    .popup__author-edit {
+        max-width: 238px;
+    }
+
+}

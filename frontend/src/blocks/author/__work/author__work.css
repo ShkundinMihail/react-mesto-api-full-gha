@@ -1,0 +1,19 @@
+.author__work {
+    color: #fff;
+    margin: 0;
+    font-size: 18px;
+    line-height: 22px;
+    font-weight: 400;
+    max-width: 336px;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden;
+}
+
+@media screen and (max-width:620px) {
+    .author__work {
+        font-size: 14px;
+        line-height: 17px;
+        max-width: 282px;
+    }
+}
