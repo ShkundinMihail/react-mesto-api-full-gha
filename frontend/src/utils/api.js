@@ -99,9 +99,9 @@ class Api {
     };
 }
 const api = new Api({
-    baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-59',
+    baseUrl: 'https://api.skundinmihail.nomoredomains.monster',
     headers: {
-        authorization: '22484fcb-aa03-43f2-ad62-a17b1e9a91a9',
+        // authorization: '22484fcb-aa03-43f2-ad62-a17b1e9a91a9',
         'Content-Type': 'application/json',
     }
 }
