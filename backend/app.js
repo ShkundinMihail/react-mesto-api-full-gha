@@ -27,13 +27,14 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
 
 app.use(cookieParser());
 app.use(express.json());
-app.use(cors());
+
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
     throw new Error('The server is about to fail');
   }, 0);
 });
+app.use(cors());
 app.post('/signup', createUserValidation, createUser);
 app.post('/signin', loginValidation, loginUser);
 
