@@ -4,7 +4,7 @@ const allowedCors = [
   'https://SkundinMihail.nomoredomains.monster',
   'http://http://api.skundinmihail.nomoredomains.monster',
   'https://http://api.skundinmihail.nomoredomains.monster',
-  '*',
+  '*', 'http://localhost:3002/',
 ];
 module.exports = (req, res, next) => {
   const { origin } = req.headers;
