@@ -8,6 +8,7 @@ const { PORT = 3000 } = process.env;
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
 const { errors } = require('celebrate');
+const cors = require('cors');
 const userRoutes = require('./routes/users');
 const cardRoutes = require('./routes/cards');
 const NotFound = require('./errors/NotFound404');
@@ -26,6 +27,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
 
 app.use(cookieParser());
 app.use(express.json());
+app.use(cors());
 app.use(requestLogger);
 app.get('/crash-test', () => {
   setTimeout(() => {
