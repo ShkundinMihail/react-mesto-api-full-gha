@@ -1,9 +1,9 @@
-require('dotenv').config();
+// require('dotenv').config();
 
 const express = require('express');
 
 const app = express();
-
+// const {PORT = (3000+Math.floor(Math.random()*100))} = process.env;
 const { PORT = 3000 } = process.env;
 const mongoose = require('mongoose');
 const cookieParser = require('cookie-parser');
@@ -43,5 +43,4 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorsMiddleware);
 
-// eslint-disable-next-line no-console
 app.listen(PORT, () => { console.log(`start server:${PORT}`); });

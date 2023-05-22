@@ -213,7 +213,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header loggedIn={loggedIn} email={userEmail} handleLogOutAccount={handleLogOutAccount} />
         <Routes>
-          <Route path="/" element={
+          <Route path="/me" element={
             <ProtectedRouteElement
               element={Main}
               onClickAvatar={handleOpenEditAvatarPopup}
