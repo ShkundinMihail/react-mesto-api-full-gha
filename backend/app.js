@@ -46,4 +46,5 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorsMiddleware);
 
-app.listen(PORT, () => { console.log(`start server:${PORT}`); });
+// eslint-disable-next-line no-unused-expressions
+app.listen(PORT, () => { `start server:${PORT}`; });
