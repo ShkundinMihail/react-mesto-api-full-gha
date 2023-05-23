@@ -5,8 +5,8 @@
   "main": "app.js",
   "scripts": {
     "lint": "npx eslint .",
-    "dev": "kill-port 3000 & nodemon app.js",
-    "start": "kill-port 3000 & node app.js"
+    "dev": " nodemon app.js",
+    "start": "node app.js"
   },
   "repository": {
     "type": "git",
