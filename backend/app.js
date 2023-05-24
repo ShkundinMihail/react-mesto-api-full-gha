@@ -17,6 +17,7 @@ const { loginUser, createUser } = require('./controllers/users');
 const auth = require('./middlewares/auth');
 const { errorsMiddleware } = require('./middlewares/errors');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
+const { corsOptions } = require('./corsOptions/corsOptions');
 const {
   createUserValidation,
   loginValidation,
@@ -25,9 +26,7 @@ const {
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
   .then(() => { console.log('database ok'); })
   .catch(() => { console.log('database err'); });
-app.use(cors({
-  credentials: true,
-}));
+app.use(cors(corsOptions));
 app.use(cookieParser());
 app.use(express.json());
 
