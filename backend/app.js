@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 // require('dotenv').config();
 
 const express = require('express');
@@ -24,7 +25,7 @@ const {
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
   .then(() => { console.log('database ok'); })
   .catch(() => { console.log('database err'); });
-
+app.use(cors());
 app.use(cookieParser());
 app.use(express.json());
 
@@ -34,7 +35,7 @@ app.get('/crash-test', () => {
     throw new Error('The server is about to fail');
   }, 0);
 });
-app.use(cors());
+
 app.post('/signup', createUserValidation, createUser);
 app.post('/signin', loginValidation, loginUser);
 
@@ -46,4 +47,4 @@ app.use(errorLogger);
 app.use(errors());
 app.use(errorsMiddleware);
 
-app.listen(PORT, () => { });
+app.listen(PORT, () => { console.log(PORT); });

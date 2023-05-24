@@ -38,7 +38,8 @@ function App() {
   });
   const navigate = useNavigate();
   const cookies = new Cookies();
-  console.log( typeof document.cookie.jwt)
+  console.log(document.cookie
+    )
   const [InfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   //инфа о пользователе
   const [currentUser, setCurrentUser] = React.useState({
@@ -49,9 +50,9 @@ function App() {
     'cohort': ''
   });
   //проверить токен при загрузке сайта
-  React.useEffect(() => {
-    checkToken();
-  }, []);
+  // React.useEffect(() => {
+  //   checkToken();
+  // }, []);
 
   //загрузка карточек на страницу
   React.useEffect(() => {
@@ -179,8 +180,9 @@ function App() {
   const handleLogin = (email, password) => {
     login(email, password)
       .then(data => {
-      //  localStorage.setItem('token', data.token);
-      document.cookie.set('jwt', data.cookies.jwt)
+     // localStorage.setItem('token', data.token);
+    //  document.cookie.set('jwt', data.cookies.jwt)
+  //  console.log(document.cookie)
         setUserEmail(email);
         setLoggedIn(true);
         navigate('/', { replace: true });
@@ -190,23 +192,24 @@ function App() {
       })
   }
   //проверка токена
-  const checkToken = () => {
-    const token = CookiesII.get('jwt');
-    console.log(token)
-    if (token) {
-      verificationToken(token)
-        .then((res) => {
-          if (res) {
-            setUserEmail(res.data.email);
-            setLoggedIn(true);
-            navigate('/me', { replace: true });
-          }
-        })
-        .catch((err) => {
-          console.log(`Ошибка входа. Авторизуйтесь или пройдите регистрацию. 😟: ${err}`);
-        });
-    }
-  }
+  // const checkToken = () => {
+  //   // const token = localStorage.getItem('token');
+  //   // const token2 = document.cookie;
+  //  // console.log(token2)
+  //   if (token) {
+  //     verificationToken(token)
+  //       .then((res) => {
+  //         if (res) {
+  //           setUserEmail(res.data.email);
+  //           setLoggedIn(true);
+  //           navigate('/me', { replace: true });
+  //         }
+  //       })
+  //       .catch((err) => {
+  //         console.log(`Ошибка входа. Авторизуйтесь или пройдите регистрацию. 😟: ${err}`);
+  //       });
+  //   }
+  // }
   //выход из аккаунта
   const handleLogOutAccount = () => {
     localStorage.removeItem('token');

@@ -24,6 +24,7 @@ export const login = (email, password) => {
         body: JSON.stringify({ password, email })
     })
         .then(res => {
+            console.log(res)
             return handleResponse(res);
         })
 }
@@ -31,6 +32,7 @@ export const login = (email, password) => {
 export const verificationToken = (token) => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
+        credentials: "include",
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
@@ -38,7 +40,8 @@ export const verificationToken = (token) => {
         },
     })
         .then(res => {
-            return handleResponse(res);
+            console.log(res)
+            return handleResponse(res.headers);
         });
 };
 
