@@ -4,8 +4,8 @@ import { Header } from './Header.js';
 import api from "../utils/api.js";
 import { Main } from './Main.js';
 import { Footer } from './Footer.js';
-import { Login } from './Login'
-import { Register } from './Register'
+import { Login } from './Login';
+import { Register } from './Register';
 import { InfoTooltip } from './InfoTooltip.js';
 import { ImagePopup } from './ImagePopup.js';
 import { PopupWithForm } from './PopupWithForm.js';
@@ -19,6 +19,8 @@ import { register, login, verificationToken } from '../utils/Auth';
 import authorizationSuccessfulImage from '../images/good.svg';
 import authorizationFailedImage from '../images/bad.svg'
 import { AutorizationForm } from './AutorizationForm.js';
+import Cookies from 'universal-cookie';
+import CookiesII from 'js-cookie';
 
 function App() {
   const [cards, setCards] = React.useState([]);
@@ -34,7 +36,9 @@ function App() {
     text: '',
     image: '',
   });
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const cookies = new Cookies();
+  console.log( typeof document.cookie.jwt)
   const [InfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   //инфа о пользователе
   const [currentUser, setCurrentUser] = React.useState({
@@ -175,10 +179,11 @@ function App() {
   const handleLogin = (email, password) => {
     login(email, password)
       .then(data => {
-        localStorage.setItem('token', data.token);
+      //  localStorage.setItem('token', data.token);
+      document.cookie.set('jwt', data.cookies.jwt)
         setUserEmail(email);
         setLoggedIn(true);
-        navigate('/me', { replace: true });
+        navigate('/', { replace: true });
       })
       .catch(err => {
         console.log(`Ошибка входа. Введите корректный логин или пройдите регистрацию. 😟: ${err}`);
@@ -186,7 +191,8 @@ function App() {
   }
   //проверка токена
   const checkToken = () => {
-    const token = localStorage.getItem('token');
+    const token = CookiesII.get('jwt');
+    console.log(token)
     if (token) {
       verificationToken(token)
         .then((res) => {
@@ -213,7 +219,7 @@ function App() {
       <CurrentUserContext.Provider value={currentUser}>
         <Header loggedIn={loggedIn} email={userEmail} handleLogOutAccount={handleLogOutAccount} />
         <Routes>
-          <Route path="/me" element={
+          <Route path="/" element={
             <ProtectedRouteElement
               element={Main}
               onClickAvatar={handleOpenEditAvatarPopup}

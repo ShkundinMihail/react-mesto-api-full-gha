@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://auth.nomoreparties.co';
+export const BASE_URL = 'https://api.skundinmihail.nomoredomains.monster';
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
@@ -24,7 +24,6 @@ export const login = (email, password) => {
         body: JSON.stringify({ password, email })
     })
         .then(res => {
-            //email: advancedCorves12345678@gmail.com, password: 11111111
             return handleResponse(res);
         })
 }
@@ -35,6 +34,7 @@ export const verificationToken = (token) => {
         headers: {
             'Content-Type': 'application/json',
             Authorization: `Bearer ${token}`,
+        
         },
     })
         .then(res => {
