@@ -26,7 +26,17 @@ const {
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
   .then(() => { console.log('database ok'); })
   .catch(() => { console.log('database err'); });
-app.use(cors(corsOptions));
+// app.use(cors(corsOptions));
+app.options('*', cors({
+  origin: corsOptions,
+  credentials: true,
+}));
+
+app.use(express.json())
+  .use(cors({
+    origin: corsOptions,
+    credentials: true,
+  }));
 app.use(cookieParser());
 app.use(express.json());
 

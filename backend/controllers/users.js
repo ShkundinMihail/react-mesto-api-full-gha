@@ -11,6 +11,8 @@ const NotFound = require('../errors/NotFound404');
 const Conflict = require('../errors/Conflict409');
 const { STATUS_CREATED_201 } = require('../errors/errorCodes');
 
+const { NODE_ENV, JWT_SECRET } = process.env;
+
 const getUsers = (req, res, next) => {
   UserSchema.find().then((users) => {
     res.send({ data: users });
@@ -125,8 +127,8 @@ const loginUser = (req, res, next) => {
   const { email, password } = req.body;
   return UserSchema.findUserByCredentials(email, password)
     .then((user) => {
-      const token = jwt.sign({ _id: user._id }, 'some-secret-key', { expiresIn: '7d' });
-      res.cookie('jwt', token, { maxAge: 10000000000, httpOnly: false }).send({ message: 'goodBoy' });
+      const token = jwt.sign({ _id: user._id }, NODE_ENV === 'production' ? JWT_SECRET : 'some-secret-key', { expiresIn: '7d' });
+      res.cookie('jwt', token, { maxAge: 10000000000, httpOnly: true }).send({ message: 'goodBoy' });
     })
     .catch(next);
 };

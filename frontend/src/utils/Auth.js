@@ -17,6 +17,7 @@ export const register = (email, password) => {
 export const login = (email, password) => {
     return fetch(`${BASE_URL}/signin`, {
         method: 'POST',
+        credentials: "include",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
@@ -40,7 +41,6 @@ export const verificationToken = (token) => {
         },
     })
         .then(res => {
-            console.log(res)
             return handleResponse(res.headers);
         });
 };

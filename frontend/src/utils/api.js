@@ -36,6 +36,7 @@ class Api {
     changeUserInfo(value) {
         return fetch(`${this._baseUrl}/users/me`, {
             method: 'PATCH',
+            credentials: "include",
             headers: this._headers,
             body: JSON.stringify({
                 name: value.name,
@@ -48,6 +49,7 @@ class Api {
     downloadNewCard(value) {
         return fetch(`${this._baseUrl}/cards`, {
             method: 'POST',
+            credentials: "include",
             headers: this._headers,
             body: JSON.stringify({
                 name: value.title,
@@ -60,6 +62,7 @@ class Api {
     changeAvatar(value) {
         return fetch(`${this._baseUrl}/users/me/avatar`, {
             method: 'PATCH',
+            credentials: "include",
             headers: this._headers,
             body: JSON.stringify({
                 avatar: value
@@ -71,6 +74,7 @@ class Api {
     putLikeEl(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'PUT',
+            credentials: "include",
             headers: this._headers
         })
             .then(res => this._getResponse(res));
@@ -79,6 +83,7 @@ class Api {
     deleteLikeEL(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'DELETE',
+            credentials: "include",
             headers: this._headers
         })
             .then(res => this._getResponse(res));
@@ -87,6 +92,7 @@ class Api {
     deleteCard(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}`, {
             method: 'DELETE',
+            credentials: "include",
             headers: this._headers
         })
             .then(res => this._getResponse(res));
@@ -105,7 +111,8 @@ const api = new Api({
     headers: {
         // authorization: '22484fcb-aa03-43f2-ad62-a17b1e9a91a9',
         'Content-Type': 'application/json',
-        'Access-Control-Allow-Origin':'*'
+       // 'Access-Control-Allow-Origin':'*',
+       credentials: "include",
     }
 }
 );
