@@ -191,7 +191,7 @@ function App() {
         console.log(`Ошибка входа. Введите корректный логин или пройдите регистрацию. 😟: ${err}`);
       })
   }
-  //проверка токена
+//  проверка токена
   // const checkToken = () => {
   //   // const token = localStorage.getItem('token');
   //   // const token2 = document.cookie;
@@ -210,6 +210,7 @@ function App() {
   //       });
   //   }
   // }
+  console.log(document.cookie)
   //выход из аккаунта
   const handleLogOutAccount = () => {
     localStorage.removeItem('token');
