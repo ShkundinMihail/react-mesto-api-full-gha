@@ -177,8 +177,6 @@ function App() {
   const handleLogin = (email, password) => {
     login(email, password)
       .then(data => {
-        console.log(Cookies.get('jwt'))
-        console.log(document.cookie = 'jwt')
         setUserEmail(email);
         setLoggedIn(true);
         navigate('/', { replace: true });
@@ -187,12 +185,16 @@ function App() {
         console.log(`Введите корректный логин или пройдите регистрацию. 😟: ${err}`);
       })
   }
-  console.log(document.cookie = 'jwt')
+
   // проверка токена
   const checkToken = () => {
-    const token = Cookies.get('jwt');
+    const getCookie = (name) => {
+      const matches = document.cookie.match(new RegExp("(?:^|; )" + name.replace(/([\.$?*|{}\(\)\[\]\\\/\+^])/g, '\\$1') + "=([^;]*)"));
+      return matches ? decodeURIComponent(matches[1]) : undefined;
+    };
+    const token = getCookie('jwt');
     if (token) {
-      verificationToken(token)
+      verificationToken()
         .then((res) => {
           if (res) {
             setUserEmail(res.email);

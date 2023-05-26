@@ -1,4 +1,5 @@
-export const BASE_URL = 'https://api.skundinmihail.nomoredomains.monster';
+// export const BASE_URL = 'https://api.skundinmihail.nomoredomains.monster';
+export const BASE_URL = 'http://localhost:3001';
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
@@ -29,7 +30,7 @@ export const login = (email, password) => {
         })
 }
 
-export const verificationToken = (token) => {
+export const verificationToken = () => {
     return fetch(`${BASE_URL}/users/me`, {
         method: 'GET',
         credentials: "include",
@@ -39,8 +40,7 @@ export const verificationToken = (token) => {
         },
     })
         .then(res => {
-          return  res.json()
-          // return handleResponse(res);
+          return handleResponse(res);
 
         });
 };
