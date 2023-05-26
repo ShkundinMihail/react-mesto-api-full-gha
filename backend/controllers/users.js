@@ -131,7 +131,7 @@ const loginUser = (req, res, next) => {
       res.cookie('jwt', token, {
         sameSite: 'lax',
         maxAge: 10000000000,
-       // httpOnly: false,
+        // httpOnly: false,
       }).send({ message: 'goodBoy' });
     })
     .catch(next);
