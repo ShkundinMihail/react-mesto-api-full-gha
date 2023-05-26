@@ -5,8 +5,8 @@ export function Card({ id, ...props }) {
 console.log(props.data)
   const context = React.useContext(CurrentUserContext);
   
-const isLiked = true
-// const isLiked = props.data.likes.some(i => i === context._id);
+  const isLiked = true
+ // const isLiked = props.data.likes.some(i => i === context._id);
 
   const owner = props.data.owner === context._id;
 
@@ -29,11 +29,9 @@ const isLiked = true
       <div className="element__text-zone">
         <h2 className="element__title">{props.data.name}</h2>
       </div>
-      <button className={isLiked ? "element__like element__like_active" : "element__like"} type="button" name="like" onClick={handleLikeClick}></button>
-      <span className="element__number-likes"></span>
+      {props.data.likes &&<button className={isLiked ? "element__like element__like_active" : "element__like"} type="button" name="like" onClick={handleLikeClick}></button>}
+    {props.data.likes && <span className="element__number-likes">{props.data.likes.length}</span>}
     </article>
   );
 }
-//{props.data.likes.length}
-
-
+//

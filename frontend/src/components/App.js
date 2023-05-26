@@ -130,7 +130,7 @@ function App() {
     api.downloadNewCard({ title, link })
       .then(newCard => {
         console.log(newCard)
-        setCards([ newCard, ...cards,]);
+        setCards([...cards, newCard,]);
       })
       .then(() => { closeAllPopups() })
       .catch(err => { console.log(`Не удалось добавить карточку 🤪 ${err}`) })
