@@ -8,7 +8,7 @@
 
 ## Ссылки на проект
 
-IP-адрес 51.250.89.67
+IP-адрес <158.160.107.125>
 
 Frontend https://skundinmihail.nomoredomains.monster
 
