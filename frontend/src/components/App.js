@@ -19,8 +19,7 @@ import { register, login, verificationToken } from '../utils/Auth';
 import authorizationSuccessfulImage from '../images/good.svg';
 import authorizationFailedImage from '../images/bad.svg'
 import { AutorizationForm } from './AutorizationForm.js';
-import Cookies from 'universal-cookie';
-import CookiesII from 'js-cookie';
+import Cookies from 'js-cookie';
 
 function App() {
   const [cards, setCards] = React.useState([]);
@@ -37,9 +36,7 @@ function App() {
     image: '',
   });
   const navigate = useNavigate();
-  const cookies = new Cookies();
-  console.log(document.cookie
-    )
+
   const [InfoTooltipOpen, setInfoTooltipOpen] = React.useState(false);
   //инфа о пользователе
   const [currentUser, setCurrentUser] = React.useState({
@@ -50,9 +47,9 @@ function App() {
     'cohort': ''
   });
   //проверить токен при загрузке сайта
-  // React.useEffect(() => {
-  //   checkToken();
-  // }, []);
+  React.useEffect(() => {
+    checkToken();
+  }, []);
 
   //загрузка карточек на страницу
   React.useEffect(() => {
@@ -117,25 +114,26 @@ function App() {
       .then(() => {
         setCards((state) => state.filter((c) => c._id !== cardId))
       })
-      .catch(err => { console.log(`Сбой. Не удалось удалить карточку...🥺${err}`) })
+      .catch(err => { console.log(`Не удалось удалить карточку...🥺${err}`) })
   };
   //поставить лайк
   const handleCardLike = (card) => {
-    const isLiked = card.likes.some(i => i._id === currentUser._id);
+    const isLiked = card.likes.some(i => i === currentUser._id);
     api.changeLikeCardStatus(card._id, !isLiked)
       .then((newCard) => {
         setCards((state) => state.map((c) => c._id === card._id ? newCard : c))
       })
-      .catch(err => { console.log(`Это провал... Не удалось поставить(удалить) лайк... 🥵${err}`) });
+      .catch(err => { console.log(`Не удалось поставить(удалить) лайк... 🥵${err}`) });
   }
   //новая карточка
   const handleAddPlaceSubmit = (title, link) => {
     api.downloadNewCard({ title, link })
       .then(newCard => {
-        setCards([newCard, ...cards]);
-        closeAllPopups()
+        console.log(newCard)
+        setCards([ newCard, ...cards,]);
       })
-      .catch(err => { console.log(`Фиаско. Не удалось добавить карточку 🤪 ${err}`) })
+      .then(() => { closeAllPopups() })
+      .catch(err => { console.log(`Не удалось добавить карточку 🤪 ${err}`) })
   }
   //изменение аватара
   const sendAvatarToServer = (link) => {
@@ -144,7 +142,7 @@ function App() {
         setCurrentUser(link)
         closeAllPopups()
       })
-      .catch(err => { console.log(`Ошибка. Аватар не обновлён 🤔: ${err}`) })
+      .catch(err => { console.log(`Аватар не обновлён 🤔: ${err}`) })
   }
   //изменение информации о пользователе
   const sendProfileToServer = (textData) => {
@@ -153,7 +151,7 @@ function App() {
         setCurrentUser(text)
         closeAllPopups()
       })
-      .catch(err => { console.log(`Ошибка. Информация о пользователе не обновлена 😟: ${err}`) })
+      .catch(err => { console.log(`Информация о пользователе не обновлена 😟: ${err}`) })
   }
   //регистрация
   const handleRegister = (email, password) => {
@@ -180,40 +178,36 @@ function App() {
   const handleLogin = (email, password) => {
     login(email, password)
       .then(data => {
-     // localStorage.setItem('token', data.token);
-    //  document.cookie.set('jwt', data.cookies.jwt)
-  //  console.log(document.cookie)
         setUserEmail(email);
         setLoggedIn(true);
         navigate('/', { replace: true });
       })
       .catch(err => {
-        console.log(`Ошибка входа. Введите корректный логин или пройдите регистрацию. 😟: ${err}`);
+        console.log(`Введите корректный логин или пройдите регистрацию. 😟: ${err}`);
       })
   }
-//  проверка токена
-  // const checkToken = () => {
-  //   // const token = localStorage.getItem('token');
-  //   // const token2 = document.cookie;
-  //  // console.log(token2)
-  //   if (token) {
-  //     verificationToken(token)
-  //       .then((res) => {
-  //         if (res) {
-  //           setUserEmail(res.data.email);
-  //           setLoggedIn(true);
-  //           navigate('/me', { replace: true });
-  //         }
-  //       })
-  //       .catch((err) => {
-  //         console.log(`Ошибка входа. Авторизуйтесь или пройдите регистрацию. 😟: ${err}`);
-  //       });
-  //   }
-  // }
-  console.log(document.cookie)
+
+  // проверка токена
+  const checkToken = () => {
+    const token = Cookies.get('jwt');
+    if (token) {
+      verificationToken(token)
+        .then((res) => {
+          if (res) {
+            setUserEmail(res.email);
+            setLoggedIn(true);
+            navigate('/', { replace: true });
+          }
+        })
+        .catch((err) => {
+          console.log(`Ошибка входа. Авторизуйтесь или пройдите регистрацию. 😟: ${err}`);
+        });
+    }
+  }
+
   //выход из аккаунта
   const handleLogOutAccount = () => {
-    localStorage.removeItem('token');
+    Cookies.remove('jwt');
     setLoggedIn(false);
     setUserEmail('');
     navigate('/sign-in', { replace: true });

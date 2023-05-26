@@ -1,4 +1,4 @@
-export const BASE_URL = 'https://api.skundinmihail.nomoredomains.monster';
+export const BASE_URL = 'http://localhost:3001';
 
 export const register = (email, password) => {
     return fetch(`${BASE_URL}/signup`, {
@@ -25,7 +25,6 @@ export const login = (email, password) => {
         body: JSON.stringify({ password, email })
     })
         .then(res => {
-            console.log(res)
             return handleResponse(res);
         })
 }
@@ -36,12 +35,13 @@ export const verificationToken = (token) => {
         credentials: "include",
         headers: {
             'Content-Type': 'application/json',
-            Authorization: `Bearer ${token}`,
         
         },
     })
         .then(res => {
-            return handleResponse(res.headers);
+          return  res.json()
+          // return handleResponse(res);
+
         });
 };
 

@@ -80,7 +80,7 @@ class Api {
             .then(res => this._getResponse(res));
     };
     //удаляем лайк/////////////////////////////////////////////
-    deleteLikeEL(cardId) {
+    deleteLikeEL(cardId) {       
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'DELETE',
             credentials: "include",
@@ -107,12 +107,9 @@ class Api {
     };
 }
 const api = new Api({
-    baseUrl: 'https://api.skundinmihail.nomoredomains.monster',
+    baseUrl: 'http://localhost:3001',
     headers: {
-        // authorization: '22484fcb-aa03-43f2-ad62-a17b1e9a91a9',
         'Content-Type': 'application/json',
-       // 'Access-Control-Allow-Origin':'*',
-       credentials: "include",
     }
 }
 );

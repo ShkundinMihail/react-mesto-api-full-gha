@@ -14,6 +14,7 @@ const corsOptions = {
     'localhost:3005',
     'http://skundinmihail.nomoredomains.monster',
     'https://skundinmihail.nomoredomains.monster',
+    'https://localhost:3003',
   ],
 
 };

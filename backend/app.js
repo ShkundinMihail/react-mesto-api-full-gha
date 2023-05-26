@@ -1,4 +1,5 @@
 /* eslint-disable no-console */
+
 // require('dotenv').config();
 
 const express = require('express');
@@ -26,7 +27,7 @@ const {
 mongoose.connect('mongodb://127.0.0.1:27017/mestodb')
   .then(() => { console.log('database ok'); })
   .catch(() => { console.log('database err'); });
-// app.use(cors(corsOptions));
+// app.use(cors());
 app.options('*', cors({
   origin: corsOptions,
   credentials: true,
