@@ -129,8 +129,7 @@ function App() {
   const handleAddPlaceSubmit = (title, link) => {
     api.downloadNewCard({ title, link })
       .then(newCard => {
-        console.log(newCard)
-        setCards([...cards, newCard,]);
+        setCards([...cards, newCard.data,]);
       })
       .then(() => { closeAllPopups() })
       .catch(err => { console.log(`Не удалось добавить карточку 🤪 ${err}`) })
@@ -178,6 +177,8 @@ function App() {
   const handleLogin = (email, password) => {
     login(email, password)
       .then(data => {
+        console.log(Cookies.get('jwt'))
+        console.log(document.cookie = 'jwt')
         setUserEmail(email);
         setLoggedIn(true);
         navigate('/', { replace: true });
@@ -186,7 +187,7 @@ function App() {
         console.log(`Введите корректный логин или пройдите регистрацию. 😟: ${err}`);
       })
   }
-
+  console.log(document.cookie = 'jwt')
   // проверка токена
   const checkToken = () => {
     const token = Cookies.get('jwt');
