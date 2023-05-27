@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-// require('dotenv').config();
+require('dotenv').config();
 
 const express = require('express');
 
@@ -33,11 +33,10 @@ app.options('*', cors({
   credentials: true,
 }));
 
-app.use(express.json())
-  .use(cors({
-    origin: corsOptions,
-    credentials: true,
-  }));
+app.use(cors({
+  origin: corsOptions,
+  credentials: true,
+}));
 app.use(cookieParser());
 app.use(express.json());
 
@@ -54,7 +53,7 @@ app.post('/signin', loginValidation, loginUser);
 app.use('/users', auth, userRoutes);
 app.use('/cards', auth, cardRoutes);
 
-app.use('*', (req, res, next) => { next(new NotFound('URL not found')); });
+app.use('*', auth, (req, res, next) => { next(new NotFound('URL not found')); });
 app.use(errorLogger);
 app.use(errors());
 app.use(errorsMiddleware);

@@ -80,7 +80,7 @@ class Api {
             .then(res => this._getResponse(res));
     };
     //удаляем лайк/////////////////////////////////////////////
-    deleteLikeEL(cardId) {       
+    deleteLikeEL(cardId) {
         return fetch(`${this._baseUrl}/cards/${cardId}/likes`, {
             method: 'DELETE',
             credentials: "include",
